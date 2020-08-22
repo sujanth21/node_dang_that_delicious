@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
+const { getHomePage } = require("../controllers/stores");
+
 // Do work here
-router.get('/', (req, res) => {
-  res.send('Hey! It works!');
-});
+router.route("/").get(getHomePage);
 
 module.exports = router;
