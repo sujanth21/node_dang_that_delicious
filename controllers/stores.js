@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const Store = require("../models/Store");
 // @desc    Getting the home page for the store
 // @route   GET /
 // @access  Public
@@ -29,11 +31,13 @@ exports.addStore = (req, res, next) => {
 // @desc   Create a new store and stored to a database
 // @route  POST /add
 // @access Private
-exports.createStore = (req, res, next) => {
+exports.createStore = async (req, res, next) => {
   try {
+    const store = await Store.create(req.body);
+
     res.status(201).json({
       success: true,
-      data: req.body,
+      data: store,
     });
   } catch (error) {
     res.status(400).json({
