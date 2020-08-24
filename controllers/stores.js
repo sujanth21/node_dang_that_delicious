@@ -33,6 +33,7 @@ exports.addStore = (req, res, next) => {
 // @access Private
 exports.createStore = async (req, res, next) => {
   try {
+    console.log(req.body);
     const store = await Store.create(req.body);
 
     res.status(201).json({
@@ -42,7 +43,7 @@ exports.createStore = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       success: false,
-      error,
+      error: error.message,
     });
   }
 };
